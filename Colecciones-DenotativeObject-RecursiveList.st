@@ -1,3 +1,4 @@
+
 !classDefinition: #EmptyList category: #'Colecciones-DenotativeObject-RecursiveList'!
 DenotativeObject subclass: #EmptyList
 	instanceVariableNames: ''
