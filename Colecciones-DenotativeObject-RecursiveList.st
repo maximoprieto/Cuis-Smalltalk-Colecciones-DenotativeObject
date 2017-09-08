@@ -213,8 +213,10 @@ hasSameElementsInSameOrderAs: aList
 headIsEqualTo: anObject 
 	^head = anObject ! !
 
-!List class methodsFor: 'comparing' stamp: 'MAP 9/7/2017 15:28:35'!
+!List class methodsFor: 'comparing' stamp: 'MAP 9/7/2017 20:49:07'!
 isEqualTo: aList 
+	"This message must be use for equality instead of #= to avoid certain problems related to the implementation of denotative objects"
+	
 	^( self isSiblingOf: aList ) and: [ self hasSameElementsInSameOrderAs: aList ]! !
 
 !List class methodsFor: 'comparing' stamp: 'MAP 9/7/2017 15:23:05'!
