@@ -33,19 +33,19 @@ isEmpty
 add: anObject 
 	^self addLast: anObject ! !
 
-!EmptyList class methodsFor: 'adding' stamp: 'MAP 9/7/2017 14:48:18'!
+!EmptyList class methodsFor: 'adding' stamp: 'MAP 9/7/2017 22:26:35'!
 addFirst: anObject 
-	^self add: anObject ! !
-
-!EmptyList class methodsFor: 'adding' stamp: 'MAP 9/7/2017 17:03:13'!
-addLast: anObject 
 	| newList |
 	
-	newList := List head: anObject tail: EmptyList replicate.
+	newList := List head: anObject tail: self duplicate.
 		
 	self becomeForward: newList.
 		
-	^anObject ! !
+	^anObject! !
+
+!EmptyList class methodsFor: 'adding' stamp: 'MAP 9/7/2017 22:27:17'!
+addLast: anObject 
+	^self addFirst: anObject ! !
 
 
 !EmptyList class methodsFor: 'accessing' stamp: 'MAP 9/7/2017 14:36:42'!
@@ -128,6 +128,12 @@ collect: aBlockClosure on: aList
 select: aBlockClosure on: aList 
 	! !
 
+
+!EmptyList class methodsFor: 'replicating' stamp: 'MAP 9/7/2017 22:32:29'!
+duplicate
+
+	^self originalSibling replicate copyFrom: self! !
+
 
 !classDefinition: #List category: #'Colecciones-DenotativeObject-RecursiveList'!
 DenotativeObject subclass: #List
@@ -141,6 +147,11 @@ DenotativeObject subclass: #List
 !classDefinition: 'List class' category: #'Colecciones-DenotativeObject-RecursiveList'!
 List class
 	instanceVariableNames: 'head tail'!
+
+!List class methodsFor: 'replicating' stamp: 'MAP 9/7/2017 22:21:57'!
+duplicate
+
+	^self originalSibling replicate copyFrom: self! !
 
 !List class methodsFor: 'replicating' stamp: 'MAP 9/7/2017 13:27:06'!
 emptyReplicant
@@ -190,11 +201,11 @@ size
 add: anObject 
 	^self addLast: anObject ! !
 
-!List class methodsFor: 'adding' stamp: 'MAP 9/7/2017 17:01:35'!
+!List class methodsFor: 'adding' stamp: 'MAP 9/7/2017 22:23:56'!
 addFirst: anObject 
 	| newList |
 	
-	newList := self head: anObject tail: self copy.
+	newList := self head: anObject tail: self duplicate.
 		
 	self becomeForward: newList.
 	
